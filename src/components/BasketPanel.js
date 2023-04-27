@@ -48,13 +48,13 @@ function BasketPanel() {
                 </span>
               </div>
               <div className="btn-group mt-4">
-                <button className="active:bg-pink bg-pink p-1 px-3 rounded-lg  mr-2 ">
+                <button className="active:bg-pink hover:bg-pink hover:text-white bg-pink p-1 px-3 rounded-lg  mr-2 ">
                   Dine In
                 </button>
-                <button className="active:bg-pink active:text-white bg-transparent border-2 border-solid border-gray-600 p-1 px-3 rounded-lg text-pink  mr-2">
+                <button className="active:bg-pink hover:bg-pink hover:text-white active:text-white bg-transparent border-2 border-solid border-gray-600 p-1 px-3 rounded-lg text-pink  mr-2">
                   To Go
                 </button>
-                <button className="active:bg-pink active:text-white bg-transparent border-2 border-solid border-gray-600 p-1 px-3 rounded-lg text-pink  mr-2">
+                <button className="active:bg-pink hover:bg-pink hover:text-white active:text-white bg-transparent border-2 border-solid border-gray-600 p-1 px-3 rounded-lg text-pink  mr-2">
                   Delivery
                 </button>
               </div>
