@@ -7,10 +7,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BasketCardItem from "./cards/BasketCardItem";
+import { useSelector } from "react-redux";
 
 function BasketPanel() {
   const [showBasket, setShowBasket] = useState(false);
-  console.log(showBasket);
+
+  const getBasketItem = useSelector((state) => state.meals.basket);
+  console.log(getBasketItem);
   return (
     <>
       <div
@@ -67,7 +70,9 @@ function BasketPanel() {
               </div>
             </div>
             <div className="basketCards">
-              <BasketCardItem />
+              {getBasketItem.map((item) => (
+                <BasketCardItem item={item} key={item.idMeal} />
+              ))}
             </div>
             <div className="total absolute bottom-0 bg-black-200 z-50 border-t-2 border-solid border-gray-700 px-3 pt-3">
               <div className="flex justify-between w-full pt-2">

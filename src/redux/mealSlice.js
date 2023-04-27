@@ -4,6 +4,7 @@ const newsAdapter = createEntityAdapter();
 
 const initialState = newsAdapter.getInitialState({
   foods: [],
+  basket: [],
 });
 
 const mealSlice = createSlice({
@@ -13,6 +14,9 @@ const mealSlice = createSlice({
     mealsFetched: (state, action) => {
       state.meals = action.payload;
     },
+    addToBasket: (state, action) => {
+      state.basket.push(action.payload);
+    },
   },
 });
 
@@ -20,4 +24,4 @@ const { actions, reducer } = mealSlice;
 
 export default reducer;
 
-export const { mealsFetched } = actions;
+export const { mealsFetched, addToBasket } = actions;
