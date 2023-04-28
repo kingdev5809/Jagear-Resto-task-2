@@ -1,11 +1,15 @@
 import React from "react";
 import { foodCard1 } from "../../constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { removeFromBasket } from "../../redux/mealSlice";
 
 function BasketCardItem({ item }) {
+  const dispatch = useDispatch();
+
   return (
-    <div className=" card flex items-center ">
+    <div className=" card flex items-center  ">
       <div className=" w-[85%] mt-5 mx-1">
         <div className="flex justify-between my-2">
           <div className="flex ">
@@ -19,7 +23,9 @@ function BasketCardItem({ item }) {
               <h3 className="text-[12px] text-gray-400">${item.price}</h3>
             </span>
           </div>
-          <p className="p-2 px-4 rounded-lg m-auto  mx-0 bg-black-100">1</p>
+          <p className="p-2 px-4 rounded-lg m-auto  mx-0 bg-black-100">
+            {item.quantity}
+          </p>
         </div>
         <input
           type="text"
@@ -28,9 +34,11 @@ function BasketCardItem({ item }) {
         />
       </div>
       <div className="pl-2">
-        <div className="price mt-6 text-[14px]">$ 4.58</div>
+        <div className="price mt-6 text-[14px]">
+          $ {item.quantity * item.price}
+        </div>
         <div className="mt-8">
-          <i className="text-pink cursor-pointer border-pink rounded-lg border-solid border-2 p-2 px-3 mt-5">
+          <i onClick={()=> dispatch(removeFromBasket(item))} className="text-pink cursor-pointer border-pink rounded-lg border-solid border-2 p-2 px-3 mt-5">
             <FontAwesomeIcon icon={faTrash} />
           </i>
         </div>

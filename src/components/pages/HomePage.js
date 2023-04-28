@@ -8,10 +8,12 @@ import { getFilterCategory } from "../../api";
 import { mealsFetched } from "../../redux/mealSlice";
 import { useDispatch, useSelector } from "react-redux";
 import BasketPanel from "../BasketPanel";
+import PaymentPanel from "../PaymentPanel";
 
 function HomePage() {
   const dispatch = useDispatch();
   const [category, setCategory] = useState("Beef");
+  const [showPayment, setShowPayment] = useState(false);
 
   useEffect(() => {
     getFilterCategory(category).then((data) =>
@@ -111,8 +113,8 @@ function HomePage() {
             </div>
             <div className="m-auto cards grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 mt-12">
               {/* card item start 1 */}
-              {getMeals?.map((data) => (
-                <FoodCradsItem data={data} key={data.idMeal} />
+              {getMeals?.map((data, idx) => (
+                <FoodCradsItem data={data} idx={idx} key={data.idMeal} />
               ))}
               {/* card item end 1 */}
             </div>
@@ -120,7 +122,9 @@ function HomePage() {
         </section>
       </div>
       {/* basket panel */}
-      <BasketPanel />
+      <BasketPanel showPayment={showPayment} setShowPayment={setShowPayment} />
+      {/* Payment pane; */}
+      <PaymentPanel showPayment={showPayment} setShowPayment={setShowPayment} />
     </>
   );
 }

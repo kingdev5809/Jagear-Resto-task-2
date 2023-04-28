@@ -2,17 +2,23 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../../redux/mealSlice";
 
-function FoodCradsItem({ data }) {
+function FoodCradsItem({ data, idx }) {
   const { strMealThumb, strMeal, idMeal } = data;
   const price = Math.floor(Math.random() * (15 - 2 + 2)) + 2;
   const randomPrice2 = Math.floor(Math.random() * (35 - 5 + 5)) + 2;
   const dispatch = useDispatch();
+  const quantity = 1;
   const HandleAddToBasket = () => {
-    dispatch(addToBasket({ strMealThumb, strMeal, price }));
+    dispatch(
+      addToBasket({ idx, idMeal, strMealThumb, strMeal, price, quantity })
+    );
   };
   return (
-    <div >
-      <div onClick={HandleAddToBasket} className="card max-w-xs p-3 m-auto  rounded-xl text-center items-center mt-16 cursor-pointer  relative bg-black-200 ">
+    <div>
+      <div
+        onClick={HandleAddToBasket}
+        className="card max-w-xs p-3 m-auto  rounded-xl text-center items-center mt-16 cursor-pointer  relative bg-black-200 "
+      >
         <div className="w-[55%] ml-auto mr-auto right-0 left-0   absolute top-[-50px]">
           <img className="rounded-full " src={strMealThumb} alt="" />
         </div>

@@ -9,11 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BasketCardItem from "./cards/BasketCardItem";
 import { useSelector } from "react-redux";
 
-function BasketPanel() {
+function BasketPanel({setShowPayment}) {
   const [showBasket, setShowBasket] = useState(false);
 
   const getBasketItem = useSelector((state) => state.meals.basket);
-  console.log(getBasketItem);
+  const getTotalPrice = useSelector((state) => state.meals.totalPrice);
   return (
     <>
       <div
@@ -69,7 +69,7 @@ function BasketPanel() {
                 </div>
               </div>
             </div>
-            <div className="basketCards">
+            <div className="basketCards  h-[100%] mb-[200px]">
               {getBasketItem.map((item) => (
                 <BasketCardItem item={item} key={item.idMeal} />
               ))}
@@ -81,9 +81,12 @@ function BasketPanel() {
               </div>
               <div className="flex  justify-between w-full pt-3 ">
                 <h2 className="text[14px] text-gray-500">Sub Total</h2>
-                <h1>$21,03</h1>
+                <h1>${getTotalPrice}</h1>
               </div>
-              <button className="w-full bg-pink p-2 px-[94px] rounded-lg mt-10 mb-4">
+              <button
+                onClick={() => setShowPayment(true)}
+                className="w-full bg-pink p-2 px-[94px] rounded-lg mt-10 mb-4"
+              >
                 Continue To Payment
               </button>
             </div>
